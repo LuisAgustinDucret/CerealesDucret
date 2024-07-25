@@ -3,6 +3,8 @@ import User from 'Authentication/domain/models/User';
 import StockMovementType from 'Stock/domain/models/StockMovementType';
 import Warehouse from 'Stock/domain/models/Warehouse';
 import StockMovementDetail from 'Stock/domain/models/StockMovementDetail';
+import Batch from 'Stock/domain/models/Batch';
+import Aplicator from 'Stock/domain/models/Aplicator';
 
 export class StockMovementDto {
   @AutoMap()
@@ -34,5 +36,9 @@ export class StockMovementDto {
   @AutoMap()
   batchId?: number;
   @AutoMap()
+  batch?: Batch;
+  @AutoMap()
   aplicatorId?: number;
+  @AutoMap()
+  aplicator?: Aplicator;
 }

@@ -22,7 +22,6 @@ export default class StockMovementService {
 
   async findStockMovementById(stockMovementId: number): Promise<StockMovement> {
     const stockMovement = await this.repository.findById(stockMovementId);
-
     return stockMovement;
   }
 
