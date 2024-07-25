@@ -19,9 +19,9 @@ export default class StockMovement {
   user: User;
   @AutoMap()
   createdAt: Date;
-  @AutoMap()
+  @AutoMap(() => Warehouse)
   warehouseOrigin?: Warehouse;
-  @AutoMap()
+  @AutoMap(() => Warehouse)
   warehouseDestiny?: Warehouse;
   @AutoMap()
   movementType: StockMovementType;
@@ -29,9 +29,9 @@ export default class StockMovement {
   date: Date;
   @AutoMap(() => StockMovementDetail)
   stockMovementDetail: StockMovementDetail[];
-  @AutoMap()
+  @AutoMap(() => Batch)
   batch?: Batch;
-  @AutoMap()
+  @AutoMap(() => Aplicator)
   aplicator?: Aplicator;
 
   constructor(

@@ -28,9 +28,10 @@ export default class StockMovementDataProvider
       include: {
         warehouseDestiny: true,
         warehouseOrigin: true,
-        stockMovementDetail: true,
+        stockMovementDetail: { include: { product: true } },
         user: true,
         batch: true,
+        aplicator: true,
       },
     });
     return this.classMapper.mapAsync(
@@ -46,10 +47,9 @@ export default class StockMovementDataProvider
         warehouseDestiny: true,
         warehouseOrigin: true,
         user: true,
-        stockMovementDetail: true,
+        stockMovementDetail: { include: { product: true } },
       },
     });
-
     return this.classMapper.mapArrayAsync(
       stockMovementEntities,
       StockMovementEntity,
