@@ -45,10 +45,10 @@ class StockMovementEntity implements IStockMovementEntity {
   field: FieldEntity;
   @AutoMap(() => BatchEntity)
   batch: BatchEntity;
-  @AutoMap(() => StockMovementDetailEntity)
-  stockMovementDetail: StockMovementDetailEntity[];
   @AutoMap(() => AplicatorEntity)
   aplicator: AplicatorEntity;
+  @AutoMap(() => StockMovementDetailEntity)
+  stockMovementDetail: StockMovementDetailEntity[];
 }
 
 export default StockMovementEntity;
