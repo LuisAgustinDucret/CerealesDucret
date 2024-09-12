@@ -136,7 +136,6 @@ export default class WarehouseDetailDataProvider
   async updateMany(warehouseDetail: WarehouseDetail[]): Promise<boolean> {
     try {
       //todo chequear esto
-      const warehouseDetailToUpdate = [];
       const updates = warehouseDetail.map((detail) => ({
         data: {
           quantity: detail.quantity,

@@ -5,6 +5,7 @@ import {
   Get,
   HttpException,
   Param,
+  Patch,
   Post,
   Req,
   UseGuards,
@@ -17,8 +18,6 @@ import StockMovement from 'Stock/domain/models/StockMovement';
 import { I18n, I18nContext } from 'nestjs-i18n';
 import { CreateStockMovementDto } from '../dto/StockMovement/CreateStockMovementDto';
 import { MapInterceptor } from '@automapper/nestjs';
-import Product from 'Stock/domain/models/Product';
-import { ProductDto } from '../dto/Product/ProductDto';
 import { StockMovementDto } from '../dto/StockMovement/StockMovementDto';
 
 @Controller('StockMovement')
@@ -77,6 +76,25 @@ export default class StockMovementController {
   ): Promise<StockMovement> {
     return this.stockMovementService
       .findStockMovementById(parseInt(stockMovementId))
+      .then((stockMovement) => stockMovement)
+      .catch((error) => {
+        switch (error.name) {
+          default: {
+            throw new HttpException(error.message, 500);
+          }
+        }
+      });
+  }
+
+  @Patch('/:id')
+  @UseGuards(JwtAuthGuard)
+  @UseInterceptors(MapInterceptor(StockMovement, StockMovementDto))
+  async editDetail(
+    @Param('id') stockMovementId: string,
+    @Body() stockMovement: StockMovementDto,
+  ): Promise<StockMovement> {
+    return this.stockMovementService
+      .editMovementById(parseInt(stockMovementId), stockMovement)
       .then((stockMovement) => stockMovement)
       .catch((error) => {
         switch (error.name) {

@@ -52,7 +52,8 @@ export default class WarehouseDetailService {
     warehouseDetail: WarehouseDetail[],
   ): Promise<boolean> {
     try {
-      await this.repository.updateMany(warehouseDetail);
+      const asd = await this.repository.updateMany(warehouseDetail);
+      await asd;
       return true;
     } catch (error) {
       return error;

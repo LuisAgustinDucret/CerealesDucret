@@ -30,4 +30,15 @@ export default class StockMovementService {
 
     return stockMovement;
   }
+
+  async editMovementById(
+    id: number,
+    stockMovementDto: CreateStockMovementDto,
+  ): Promise<StockMovement> {
+    const movimiento = this.movementGenerator.createMovement(stockMovementDto);
+    return await this.repository.updateById(
+      id,
+      await movimiento.generateMovement(),
+    );
+  }
 }
