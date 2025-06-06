@@ -49,6 +49,7 @@ enum StockMovementType {
   MOVEMENT
   SELL
   APLICATION
+  SEEDING
 }
 
 model StockMovement {
