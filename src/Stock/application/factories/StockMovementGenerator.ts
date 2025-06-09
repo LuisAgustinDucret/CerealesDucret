@@ -10,6 +10,7 @@ import WarehouseValidations from '../validations/WarehouseValidations';
 import ProductService from '../service/ProductService';
 import { Sell } from './States/Sell';
 import { Aplication } from './States/Aplication';
+import { Seeding } from './States/Seeding';
 import BatchService from '../service/BatchService';
 import AplicatorService from '../service/AplicatorService';
 
@@ -26,7 +27,7 @@ export class StockMovementGenerator {
 
   createMovement(
     createStockMovementDto: CreateStockMovementDto,
-  ): Buy | Sell | Aplication /*| Movement*/ {
+  ): Buy | Sell | Aplication | Seeding /*| Movement*/ {
     switch (createStockMovementDto.movementType) {
       case StockMovementType.BUY:
         return new Buy(
@@ -45,6 +46,15 @@ export class StockMovementGenerator {
         );
       case StockMovementType.APLICATION:
         return new Aplication(
+          createStockMovementDto,
+          this.warehouseService,
+          this.warehouseDetailService,
+          this.batchService,
+          this.aplicatorService,
+          this.warehouseValidations,
+        );
+      case StockMovementType.SEEDING:
+        return new Seeding(
           createStockMovementDto,
           this.warehouseService,
           this.warehouseDetailService,
